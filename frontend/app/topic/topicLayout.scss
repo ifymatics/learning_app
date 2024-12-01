@@ -1,0 +1,81 @@
+@import "./../../styles/mixins.scss";
+.topic {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid lightgray;
+
+  .completedButton {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 2px solid lightgray;
+    height: 2rem;
+    height: 3rem;
+  }
+  .topicContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 1rem;
+    h3,
+    h4 {
+      text-align: center;
+    }
+    .video {
+      min-height: 2rem;
+      border: 2px solid lightgray;
+      margin-top: 5px;
+      background-color: gray;
+      display: flex;
+      flex-direction: center;
+      align-items: center;
+      border-radius: 6px;
+      color: white;
+    }
+    .desc {
+      min-width: 80%;
+      .descBody {
+        min-height: 5rem;
+        border: 1px solid lightgray;
+        margin-top: 5px;
+        display: flex;
+        flex-direction: center;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+        border-radius: 6px;
+      }
+    }
+  }
+  @include xs {
+    flex-direction: column;
+
+    justify-content: flex-start;
+    gap: 1rem;
+    .topicContainer {
+      width: 100%;
+    }
+    .completedButton {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 2px solid lightgray;
+      height: 2rem;
+    }
+  }
+  @include sm {
+    flex-direction: column;
+
+    justify-content: flex-start;
+    gap: 1rem;
+    .completedButton {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 2px solid lightgray;
+      height: 2rem;
+    }
+    .topicContainer {
+      width: 100%;
+    }
+  }
+}

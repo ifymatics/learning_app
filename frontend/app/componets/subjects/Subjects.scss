@@ -1,0 +1,57 @@
+.subjectContainer {
+  width: 100%;
+  // background-color: rgb(246, 244, 244);
+  .title {
+    text-align: center;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1rem;
+  }
+  .subjects {
+    width: 80%;
+    margin: 2rem auto;
+    background-color: white;
+    min-height: 80vh;
+
+    .subject {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      border: 1px solid lightgray;
+      border-bottom: 2px solid lightgray;
+      gap: 3px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      .icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 9%;
+        gap: 6px;
+      }
+      .textContainer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 90%;
+        gap: 8px;
+        .textTitleContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+
+          width: 100%;
+          .textTitle {
+            width: 85%;
+          }
+          .line {
+            width: 85%;
+            height: 1px;
+            background-color: lightgray;
+            min-width: 85%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.topicTitle {
+  min-width: 30px;
+  min-height: 30px;
+
+  -webkit-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.09);
+
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-bottom: 2px solid lightgray;
+  cursor: pointer;
+}

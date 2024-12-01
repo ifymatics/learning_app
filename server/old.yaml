@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  postgresdb:
+    container_name: postgresdb
+    image: postgres
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "${POSTGRESDB_LOCAL_PORT}:${POSTGRESDB_DOCKER_PORT}"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  app:
+    container_name: app
+    depends_on:
+      - postgresdb
+    build: ./
+    command: ["npm", "run", "start"]
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}"
+    networks:
+      - app-network
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
+
+networks:
+  app-network:
+    driver: bridge
