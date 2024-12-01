@@ -5,13 +5,17 @@ import { hasher } from "../utils/decrypter";
 export class UserController {
     static async create(req: Request, res: Response, next: NextFunction): Promise<any> {
 
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
         if (!email || !password) {
             res.status(400).json("email or password missing but required")
             return
         }
+        let userRole = role;
+        if (!userRole) {
+            userRole = '0';
+        }
         const hashedPassword = await hasher(password);
-        const user = new UserModel(email, hashedPassword, "0");
+        const user = new UserModel(email, hashedPassword, userRole);
         try {
             const newUser = await user.create()
             res.send(newUser)

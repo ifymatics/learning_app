@@ -1,45 +1,26 @@
 import postgres from "postgres";
 
-const sql = postgres({
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    database: process.env.POSTGRES_DB,
-    password: process.env.POSTGRES_PASSWORD,
-    port: 5432,
-    idle_timeout: 60000,
-    transform: postgres.camel
-});
+const sql = (() => {
+    const sql = postgres({
+        host: process.env.POSTGRES_HOST,
+        user: "postgres",//process.env.POSTGRES_USER,
+        database: process.env.POSTGRES_DB,
+        password: "root",//process.env.POSTGRES_PASSWORD,
+        port: 5432,
+        idle_timeout: 60000,
+        transform: postgres.camel
+    });
+    return sql
+})()
 // host: /*"localhost",*/ process.env.POSTGRES_HOST,
-//     user: /*"postgres",*/ process.env.POSTGRES_USER,
-//         database: /*"elearning"*/ process.env.POSTGRES_DB,
-//             password: /*"root",*/process.env.POSTGRES_PASSWORD,
-//                 port: 5432,
-//                     idle_timeout: 60000,
-//                         transform: postgres.camel
+// user: /*"postgres",*/ process.env.POSTGRES_USER,
+// database: /*"elearning"*/ process.env.POSTGRES_DB,
+// password: /*"root",*/process.env.POSTGRES_PASSWORD,
+// port: 5432,
+// idle_timeout: 60000,
+// transform: postgres.camel
 
-// export async function db(dbName = "eLearning") {
-//     let pool = new Pool(
-//         {
-//             host: "localhost",//process.env.HOST,
-//             user: "postgres",//process.env.USER,
-//             // database: "eLearning",//process.env.DATABASE,
-//             password: "root",//process.env.PASSWORD,
-//         }
-//     )
-//     try {
-//         await pool.query(`CREATE DATABASE ${dbName}`)
-//     } catch (error) {
-//         pool = new Pool(
-//             {
-//                 host: "localhost",//process.env.HOST,
-//                 user: "postgres",//process.env.USER,
-//                 database: dbName,//process.env.DATABASE,
-//                 password: "root",//process.env.PASSWORD,
-//             }
-//         )
-//     }
-//     return pool
-// }
+
 export async function userTable(table: string) {
     try {
 

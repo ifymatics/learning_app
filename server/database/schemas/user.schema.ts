@@ -18,10 +18,11 @@ export class UserSchema {
     async create(email: string, password: string, role: string, first_name?: string, last_name?: string) {
         let user;
         try {
+            console.log(email, password)
             user = await sql`insert into users (email, password, role) values(${email}, ${password}, ${role}) returning email, id`
             return user
         } catch (error: any) {
-            console.log(error.message)
+            console.log(error)
             if (error.message === 'relation "users" does not exist') {
 
                 return await userTable("users")

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node index.ts",
-    "dev": "nodemon --exec ts-node index.ts"
+    "server": "nodemon --exec ts-node index.ts",
+    "client": "npm run dev --prefix ../frontend/",
+    "dev": "concurrently \"npm run server\"  \"npm run client\""
   },
   "author": "",
   "license": "ISC",
