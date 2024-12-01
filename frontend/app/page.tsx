@@ -19,7 +19,7 @@ export default function Home() {
       try {
         setIsLoading(true);
         const { data } = await requestConfig.get(url);
-
+        console.log(data);
         setSubjects(data);
       } catch (error: unknown) {
       } finally {
@@ -30,7 +30,10 @@ export default function Home() {
   }, [currentUser?.id]);
   return (
     <>
-      <Subjects subjects={subjects} pageTitle="Subjects To Learn" />
+      <Subjects
+        subjects={subjects?.length ? subjects : []}
+        pageTitle="Subjects To Learn"
+      />
     </>
   );
 }

@@ -30,11 +30,16 @@ export const AuthContext = createContext<AuthContextProp>({
 const AuthContextProvider = ({ children }: AuthProviderProp) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(
-    JSON.parse(localStorage.getItem("user") as string) || null
+    JSON.parse(
+      global.localStorage ? (global.localStorage.getItem("user") as string) : ""
+    ) || null
   );
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    global.localStorage
+      ? global.localStorage.setItem("user", JSON.stringify(currentUser))
+      : "";
   }, [currentUser]);
 
   const login = async (value: LoginData, url = "/api/auth/login") => {

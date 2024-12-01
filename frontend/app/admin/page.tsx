@@ -112,7 +112,7 @@ const AdminPage = () => {
     value: Topic
   ) => {
     e.preventDefault();
-    //console.log(value);
+    console.log(value);
     if (
       value.title?.trim().length <= 0 ||
       value.description?.trim().length <= 0 ||
@@ -139,7 +139,10 @@ const AdminPage = () => {
   return (
     <div className="subjectContainer">
       {showCreateSubject && (
-        <ModalLayout title="Create Subjects" onCancelModal={onCancelModal}>
+        <ModalLayout
+          title="Create Subjects And Topics"
+          onCancelModal={onCancelModal}
+        >
           <SubjectForm
             err={err}
             isSubmitting={isSubmitting}
