@@ -12,7 +12,7 @@ export class AuthController {
         }
         try {
             const user = await UserModel.getByEmail(email);
-            console.log(user)
+
             // Check password validity
             const passwordMatch = await decrypter(
                 user.password,
