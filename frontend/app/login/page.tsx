@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { AuthContext, LoginData } from "./../../auth.context";
 
-import AuthForm from "../componets/authForm/AuthForm";
+import AuthForm from "../components/authForm/AuthForm";
 import Link from "next/link";
 
 const Login = () => {

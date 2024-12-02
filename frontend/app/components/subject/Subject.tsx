@@ -3,7 +3,7 @@ import { FiAlignJustify, FiSquare } from "react-icons/fi";
 import { FaCheckSquare } from "react-icons/fa";
 
 import "./subject.scss";
-import { AuthContext } from "./../../../auth.context";
+import { AuthContext } from "../../../auth.context";
 
 interface SubjectProp {
   name: string;
@@ -52,7 +52,7 @@ const Subject: FC<SubjectProp> = ({
         <div
           className="viewRank"
           onClick={() => {
-            console.log("clicked on card");
+            //console.log("clicked on card");
           }}
         >
           view ranks

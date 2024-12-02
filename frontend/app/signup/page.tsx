@@ -2,7 +2,7 @@
 import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
-import AuthForm from "../componets/authForm/AuthForm";
+import AuthForm from "../components/authForm/AuthForm";
 import { LoginData } from "@/auth.context";
 import { requestConfig } from "@/services/axios";
 import Link from "next/link";

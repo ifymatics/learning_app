@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 
 import { requestConfig } from "@/services/axios";
-import Subjects, { Subject } from "./componets/subjects/Subjects";
+import Subjects, { Subject } from "./components/subjects/Subjects";
 import { AuthContext } from "./../auth.context";
+import NavBar from "./components/navBar/NavBar";
 
 export default function Home() {
   const { currentUser } = useContext(AuthContext);

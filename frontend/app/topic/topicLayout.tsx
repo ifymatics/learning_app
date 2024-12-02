@@ -1,6 +1,6 @@
 "use client";
 import React, { FC } from "react";
-import Card from "../componets/card/Card";
+import Card from "../components/card/Card";
 import "./topicLayout.scss";
 import { FaCheckSquare } from "react-icons/fa";
 type TopicProp = {

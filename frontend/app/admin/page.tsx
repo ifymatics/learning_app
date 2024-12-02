@@ -2,18 +2,18 @@
 import React, { MouseEvent, useContext, useLayoutEffect } from "react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import Subject from "./../componets/subject/Subject";
+import Subject from "../components/subject/Subject";
 
 import { requestConfig } from "@/services/axios";
 
-import Card from "../componets/card/Card";
+import Card from "../components/card/Card";
 import { AuthContext } from "./../../auth.context";
 import "./admin.scss";
-import ModalLayout from "../componets/modalLayout/ModalLayout";
-import Rank from "../componets/rank/Rank";
-import Ranks from "../componets/Ranks/Ranks";
-import SubjectForm from "../componets/subjectForm/SubjectForm";
-import { Topic } from "./../../app/componets/subjectForm/SubjectForm";
+import ModalLayout from "../components/modalLayout/ModalLayout";
+import Rank from "../components/rank/Rank";
+import Ranks from "../components/Ranks/Ranks";
+import SubjectForm from "../components/subjectForm/SubjectForm";
+import { Topic } from "../components/subjectForm/SubjectForm";
 
 export type Subject = {
   name: string;

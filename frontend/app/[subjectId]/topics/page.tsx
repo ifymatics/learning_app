@@ -45,14 +45,19 @@ const TopicsPage = () => {
   };
   return (
     <div>
+      <h2
+        style={{ textAlign: "center", marginBottom: "1rem", marginTop: "1rem" }}
+      >
+        Topics
+      </h2>
       {Array.isArray(topics) &&
-        topics.map((topic) => (
+        topics.map((topic, index) => (
           <div
             className="topicTitle"
             key={topic.id}
             onClick={() => onNavigate(topic.id, topic.isCompleted)}
           >
-            <div>{topic.title}</div>
+            {index + 1}. <div>{topic.title}</div>
           </div>
         ))}
     </div>
