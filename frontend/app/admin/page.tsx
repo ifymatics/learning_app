@@ -37,9 +37,10 @@ const AdminPage = () => {
   const [showRanks, setShowRanks] = useState(false);
   const [ranks, setRanks] = useState<Rank[]>([]);
   const { currentUser } = useContext(AuthContext);
-
+  const [isSuccessfull, setIsSuccessfull] = useState("");
   const [, setIsLoading] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
+
   useLayoutEffect(() => {
     if (!currentUser?.id || Number(currentUser.role) !== 1) {
       redirect("/");
@@ -98,6 +99,11 @@ const AdminPage = () => {
       await requestConfig.post("/api/subjects", {
         name: value,
       });
+      setIsSuccessfull("Subject created successfully!!");
+
+      setTimeout(() => {
+        setIsSuccessfull("");
+      }, 2000);
 
       setIsSubmitting(false);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,7 +118,7 @@ const AdminPage = () => {
     value: Topic
   ) => {
     e.preventDefault();
-    console.log(value);
+
     if (
       value.title?.trim().length <= 0 ||
       value.description?.trim().length <= 0 ||
@@ -128,6 +134,10 @@ const AdminPage = () => {
         ...value,
       });
 
+      setIsSuccessfull("Topic created successfully!!");
+      setTimeout(() => {
+        setIsSuccessfull("");
+      }, 2000);
       setIsSubmitting(false);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -149,6 +159,7 @@ const AdminPage = () => {
             onSubmitSubject={onSubmitSubject}
             onSubmitTopic={onSubmitTopic}
             subjects={subjects}
+            isSuccessfull={isSuccessfull}
           />
         </ModalLayout>
       )}

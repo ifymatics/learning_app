@@ -8,6 +8,7 @@ type SubjectFormProp = {
   err: string | null;
   isSubmitting: boolean;
   subjects: Subject[];
+  isSuccessfull: string;
 };
 export type Topic = {
   title: string;
@@ -15,6 +16,7 @@ export type Topic = {
   description: string;
   subjectId: number;
   subjects: Subject[];
+  isSuccessfull: string;
 };
 type Subject = {
   id: number;
@@ -26,12 +28,16 @@ const SubjectForm: FC<SubjectFormProp> = ({
   onSubmitSubject,
   onSubmitTopic,
   subjects,
+  isSuccessfull,
 }) => {
   const [value, setValue] = useState("");
   const [topic, setTopic] = useState<Topic>({} as Topic);
   const [subjectFormSelected, setSubjectFormSelected] = useState(true);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (isSuccessfull) {
+      setValue("");
+    }
   };
 
   const onChangeTopicHandler = (
@@ -54,32 +60,34 @@ const SubjectForm: FC<SubjectFormProp> = ({
         <option value="subject">Subject</option>
         <option value="topic">Topic</option>
       </select>
-
+      {isSuccessfull && <div className="success">{isSuccessfull}</div>}
       {subjectFormSelected && (
-        <form action="" className="subjectForm">
-          <input
-            name="name"
-            onChange={onChangeHandler}
-            type="text"
-            placeholder="Subject name"
-          />
+        <>
+          <form action="" className="subjectForm">
+            <input
+              name="name"
+              onChange={onChangeHandler}
+              type="text"
+              placeholder="Subject name"
+            />
 
-          {err && <div className="error">Error: {err}</div>}
-          {!isSubmitting && (
-            <button type="button" onClick={(e) => onSubmitSubject(e, value)}>
-              Submit
-            </button>
-          )}
+            {err && <div className="error">Error: {err}</div>}
+            {!isSubmitting && (
+              <button type="button" onClick={(e) => onSubmitSubject(e, value)}>
+                Submit
+              </button>
+            )}
 
-          {isSubmitting && (
-            <button
-              type="button"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              {"submitting ..."}
-            </button>
-          )}
-        </form>
+            {isSubmitting && (
+              <button
+                type="button"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                {"submitting ..."}
+              </button>
+            )}
+          </form>
+        </>
       )}
       {!subjectFormSelected && (
         <form action="" className="topicForm">
@@ -102,6 +110,7 @@ const SubjectForm: FC<SubjectFormProp> = ({
             placeholder="description"
           />
           <select name="subjectId" id="" onChange={onChangeTopicHandler}>
+            <option value="null">Select Subject</option>
             {subjects.length &&
               subjects.map((subject) => (
                 <option key={subject.id} value={subject.id}>
