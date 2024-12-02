@@ -39,7 +39,7 @@ const AuthContextProvider = ({ children }: AuthProviderProp) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     global.localStorage
       ? global.localStorage.setItem("user", JSON.stringify(currentUser))
-      : "";
+      : null;
   }, [currentUser]);
 
   const login = async (value: LoginData, url = "/api/auth/login") => {
@@ -56,6 +56,7 @@ const AuthContextProvider = ({ children }: AuthProviderProp) => {
 
   const logout = () => {
     localStorage.clear();
+    setCurrentUser(null);
   };
   return (
     <AuthContext.Provider value={{ login, logout, currentUser }}>

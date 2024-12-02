@@ -6,8 +6,9 @@ import { AuthContext } from "../../../auth.context";
 import { useContext } from "react";
 
 const NavBar = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
   const router = useRouter();
+
   return (
     <Card className="nav">
       <div className="container">
@@ -17,22 +18,20 @@ const NavBar = () => {
           <input type="search" placeholder="search for subjects" />
         </div>
         <div className="auth">
-          {!currentUser ||
-            (!currentUser.id && (
-              <>
-                <div className="signup" onClick={() => router.push("/signup")}>
-                  Signup
-                </div>
-                <div className="login" onClick={() => router.push("/login")}>
-                  Login
-                </div>
-              </>
-            ))}
-          {currentUser && currentUser.id && (
+          {currentUser && currentUser.id ? (
             <>
               <div className="profile">{`ID:${currentUser.id}`}</div>
-              <div className="login" onClick={() => router.push("/login")}>
+              <div className="login" onClick={() => logout()}>
                 Logout
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="signup" onClick={() => router.push("/signup")}>
+                Signup
+              </div>
+              <div className="login" onClick={() => router.push("/login")}>
+                Login
               </div>
             </>
           )}

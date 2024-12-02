@@ -5,12 +5,12 @@
   align-items: center;
   height: 60px;
   width: 100%;
-  padding: 0 5rem;
+  // padding: 0 5rem;
   .container {
     border: 1px solid lightgray;
     width: 100%;
-    margin: 0 2rem;
-    margin-left: 3rem;
+    // margin: 0 2rem;
+    // margin-left: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,10 +27,9 @@
       position: inherit;
       .searchIcon {
         position: absolute;
-        right: 50vw;
-        top: 100px;
+        right: 41%;
 
-        top: 2px;
+        top: 23px;
       }
       input {
         width: 100%;
@@ -76,10 +75,16 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        border: 2px solid lightgray;
+
         display: flex;
         justify-content: center;
         align-items: center;
+        .searchIcon {
+          position: absolute;
+          right: 50%;
+          font-size: large;
+          top: 23px;
+        }
 
         input {
           width: 45%;

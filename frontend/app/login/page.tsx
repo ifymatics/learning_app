@@ -29,7 +29,7 @@ const Login = () => {
 
       try {
         await login(value);
-
+        console.log(currentUser);
         if (currentUser && currentUser.id && currentUser.role === "0")
           navigate.push("/");
         if (currentUser && currentUser.id && currentUser.role === "1")
