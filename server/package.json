@@ -28,6 +28,7 @@
     "express": "^4.21.1",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
+    "next-client-cookies": "^2.0.0",
     "pg": "^8.13.1",
     "postgres": "^3.4.5"
   }

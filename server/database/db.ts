@@ -3,9 +3,9 @@ import postgres from "postgres";
 const sql = (() => {
     const sql = postgres({
         host: process.env.POSTGRES_HOST,
-        user: process.env.POSTGRES_USER,
+        user: "postgres",//process.env.POSTGRES_USER,
         database: process.env.POSTGRES_DB,
-        password: process.env.POSTGRES_PASSWORD,
+        password: "root",//process.env.POSTGRES_PASSWORD,
         port: 5432,
         idle_timeout: 60000,
         transform: postgres.camel
