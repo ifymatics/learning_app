@@ -52,8 +52,10 @@ export class UserSchema {
                 throw new Error('Not found')
             return users[0]
         } catch (error: any) {
-            if (error.essage === "Not found") {
-                return error.message
+
+            if (error.message === "Not found") {
+
+                throw new Error(error.message)
             }
         }
 

@@ -1,14 +1,18 @@
 "use client";
-import { useState, useContext, ChangeEvent } from "react";
+import { useState, useContext, ChangeEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 
 import { AuthContext, LoginData } from "./../../auth.context";
 
 import AuthForm from "../components/authForm/AuthForm";
 import Link from "next/link";
-
+type LoggedInUserData = {
+  email: string;
+  id: string;
+  role: string;
+};
 const Login = () => {
-  const { login, currentUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useRouter();
   const [value, setValue] = useState<LoginData>({
     email: "",
@@ -23,17 +27,17 @@ const Login = () => {
   // const autCtx = useContext();
   const [err, setErr] = useState(null);
 
-  const onClickHandler = async () => {
+  const onClickHandler = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (value.email.length > 0 && value.password.length > 0) {
       setIsSubmitting(true);
 
       try {
-        await login(value);
-        console.log(currentUser);
-        if (currentUser && currentUser.id && currentUser.role === "0")
-          navigate.push("/");
-        if (currentUser && currentUser.id && currentUser.role === "1")
-          navigate.push("admin");
+        const data = (await login(value)) as LoggedInUserData;
+        if (data.id && data.role) {
+          if (data.id && data.role === "0") navigate.push("/");
+          if (data.id && data.role === "1") navigate.push("admin");
+        }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setErr(error.message ? "Login failed" : error.response.data.message);

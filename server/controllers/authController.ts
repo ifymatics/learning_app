@@ -6,6 +6,7 @@ import { decrypter } from "../utils/decrypter";
 export class AuthController {
     static async login(req: Request, res: Response, next: NextFunction): Promise<any> {
         const { email, password } = req.body;
+        console.log(email, password)
         if (!email || !password) {
             res.status(400).json("email or password missing but required")
             return
@@ -14,6 +15,9 @@ export class AuthController {
             const user = await UserModel.getByEmail(email);
 
             // Check password validity
+            if (!user) {
+                return res.status(404).json("User not found")
+            }
             const passwordMatch = await decrypter(
                 user.password,
                 password
@@ -29,8 +33,9 @@ export class AuthController {
                 .cookie("accessToken", userToken, { httpOnly: true })
                 .status(200)
                 .json({ ...others });
-        } catch (error) {
-
+        } catch (error: any) {
+            res.status(500).json("Authentication failed")
+            //console.log("authController", error.message)
         }
     }
 }

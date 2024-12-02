@@ -37,14 +37,14 @@ const AdminPage = () => {
   const [showRanks, setShowRanks] = useState(false);
   const [ranks, setRanks] = useState<Rank[]>([]);
   const { currentUser } = useContext(AuthContext);
-  const { role, id } = currentUser!;
+
   const [, setIsLoading] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
   useLayoutEffect(() => {
-    if (!id || Number(role) != 1) {
+    if (!currentUser?.id || Number(currentUser.role) !== 1) {
       redirect("/");
     }
-  }, [id, role]);
+  }, [currentUser?.id, currentUser?.role]);
   useEffect(() => {
     const fetchSubjects = async () => {
       const url = `/api/subjects`;
