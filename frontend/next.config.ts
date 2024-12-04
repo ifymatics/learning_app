@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "mixins";`,
-  }
+  },
+  //output: "export"
 };
 
 export default nextConfig;

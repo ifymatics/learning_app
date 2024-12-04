@@ -18,14 +18,15 @@ const NavBar = () => {
           <input type="search" placeholder="search for subjects" />
         </div>
         <div className="auth">
-          {currentUser && currentUser.id ? (
+          {currentUser.id && (
             <>
               <div className="profile">{`ID:${currentUser.id}`}</div>
               <div className="login" onClick={() => logout()}>
                 Logout
               </div>
             </>
-          ) : (
+          )}
+          {!currentUser.id && (
             <>
               <div className="signup" onClick={() => router.push("/signup")}>
                 Signup

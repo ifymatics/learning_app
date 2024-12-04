@@ -45,7 +45,7 @@ const Ranks: FC<RankProp> = ({ ranks, onCancelModal }) => {
               justifyContent: "center",
             }}
           >
-            {ranks.length &&
+            {ranks.length > 0 ? (
               ranks.map((rank, index) => (
                 <Rank
                   email={rank.email}
@@ -54,7 +54,10 @@ const Ranks: FC<RankProp> = ({ ranks, onCancelModal }) => {
                   index={index + 1}
                   id={rank.id}
                 />
-              ))}
+              ))
+            ) : (
+              <h3 style={{ textAlign: "center", margin: "0 auto;" }}></h3>
+            )}
           </div>
         </div>
       </ModalLayout>

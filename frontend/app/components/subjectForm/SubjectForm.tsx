@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react";
 import "./SubjectForm.scss";
 import Card from "../card/Card";
+import Loader from "../Loader/Loader";
 
 type SubjectFormProp = {
   onSubmitSubject: (e: MouseEvent<HTMLButtonElement>, value: string) => void;
@@ -83,7 +84,7 @@ const SubjectForm: FC<SubjectFormProp> = ({
                 type="button"
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                {"submitting ..."}
+                {<Loader />}
               </button>
             )}
           </form>
@@ -130,7 +131,7 @@ const SubjectForm: FC<SubjectFormProp> = ({
               type="button"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              {"submitting ..."}
+              {<Loader />}
             </button>
           )}
         </form>

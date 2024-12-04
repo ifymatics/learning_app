@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+
 import { requestConfig } from "@/services/axios";
 import TopicLayout from "@/app/topic/topicLayout";
 import { AuthContext } from "./../../../../auth.context";
 import { Topic } from "../page";
+import Loader from "@/app/components/Loader/Loader";
 
 const TopicPage = () => {
   const pathname = usePathname();
@@ -38,7 +40,7 @@ const TopicPage = () => {
       }
     };
     fetchTopic();
-  }, [topicId]);
+  }, [topicId, subjectId]);
 
   const handleCompleted = async (id: number) => {
     const url = `/api/ranks`;
@@ -60,14 +62,16 @@ const TopicPage = () => {
     }
   };
   return (
-    <TopicLayout
-      handleCompleted={handleCompleted}
-      id={topic.id}
-      title={topic.title}
-      video={topic.video}
-      completed={completed && completed != "undefined" ? true : false}
-      desc={topic.description}
-    />
+    <Suspense fallback={<Loader />}>
+      <TopicLayout
+        handleCompleted={handleCompleted}
+        id={topic.id}
+        title={topic.title}
+        video={topic.video}
+        completed={completed && completed != "undefined" ? true : false}
+        desc={topic.description}
+      />
+    </Suspense>
   );
 };
 

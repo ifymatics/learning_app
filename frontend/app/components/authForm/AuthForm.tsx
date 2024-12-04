@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, MouseEvent, ReactNode } from "react";
 import "./authForm.scss";
+import Loader from "../Loader/Loader";
 interface AuthFormProp {
   title: string;
   onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -26,7 +27,7 @@ const AuthForm: FC<AuthFormProp> = ({
       <div className="appLogo">EasyLearn</div>
       <div className="card">
         <h1>{title}</h1>
-        <form action="">
+        <form>
           <input
             name="email"
             onChange={onChangeHandler}
@@ -53,8 +54,7 @@ const AuthForm: FC<AuthFormProp> = ({
 
           {isSubmitting && (
             <button style={{ display: "flex", justifyContent: "center" }}>
-              {/* <Loader /> */}
-              {"data is being loaded ..."}
+              {<Loader />}
             </button>
           )}
         </form>

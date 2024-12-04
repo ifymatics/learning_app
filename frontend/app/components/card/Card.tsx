@@ -6,10 +6,10 @@ interface CardProp {
   style?: object;
   onclick?: () => void;
 }
-const Card: FC<CardProp> = ({ className, children, style, ...others }) => {
-  const classNames = [className, "Card"];
+const Card: FC<CardProp> = ({ className, children, ...others }) => {
+  const classNames = [className ? className : "", "Card"];
   return (
-    <div className={classNames.join(" ")} style={style} {...others}>
+    <div className={classNames.join(" ")} {...others}>
       {children}
     </div>
   );

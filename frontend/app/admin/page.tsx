@@ -47,23 +47,38 @@ const AdminPage = () => {
     }
   }, [currentUser?.id, currentUser?.role]);
   useEffect(() => {
-    const fetchSubjects = async () => {
-      const url = `/api/subjects`;
+    // const fetchSubjects = async () => {
+    //   const url = `/api/subjects`;
 
-      try {
-        setIsLoading(true);
-        const { data } = await requestConfig.get(url);
+    //   try {
+    //     setIsLoading(true);
+    //     const { data } = await requestConfig.get(url);
 
-        setSubjects(data);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error: unknown) {
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    //     setSubjects(data);
+    //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    //   } catch (error: unknown) {
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
+    // fetchSubjects();
     fetchSubjects();
   }, []);
-  const onClickSubject = () => {
+  async function fetchSubjects() {
+    const url = `/api/subjects`;
+
+    try {
+      setIsLoading(true);
+      const { data } = await requestConfig.get(url);
+
+      setSubjects(data);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: unknown) {
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  const onClickCreateSubject = () => {
     setShowCreateSubject(true);
   };
 
@@ -82,6 +97,7 @@ const AdminPage = () => {
   const onCancelModal = () => {
     setShowCreateSubject(false);
     setShowRanks(false);
+    fetchSubjects();
   };
 
   const onSubmitSubject = async (
@@ -169,13 +185,13 @@ const AdminPage = () => {
         <h2 className="title">Admin Page</h2>
         <div className="container">
           <div className="created_subjects">Subjects</div>
-          <div className="create" onClick={onClickSubject}>
+          <div className="create" onClick={onClickCreateSubject}>
             create new
           </div>
         </div>
 
         <div className="courses">
-          {subjects.length &&
+          {subjects.length > 0 &&
             subjects.map((subject, index) => (
               <Subject
                 id={subject.id}

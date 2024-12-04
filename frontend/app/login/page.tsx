@@ -29,6 +29,7 @@ const Login = () => {
 
   const onClickHandler = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     if (value.email.length > 0 && value.password.length > 0) {
       setIsSubmitting(true);
 
@@ -38,9 +39,10 @@ const Login = () => {
           if (data.id && data.role === "0") navigate.push("/");
           if (data.id && data.role === "1") navigate.push("admin");
         }
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
-        setErr(error.message ? "Login failed" : error.response.data.message);
+        setErr(error.message);
       } finally {
         setIsSubmitting(false);
       }

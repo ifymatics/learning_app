@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server:build": "tsc -w",
-    "server:run": "nodemon build/index.js ",
-    "start": "node  build/index.js --ignore *.json",
-    "client": "npm run dev --prefix ../frontend/",
-    "dev": "concurrently \"npm run server:*\" "
+    "start": "node  build/index.js"
   },
   "author": "",
   "license": "ISC",

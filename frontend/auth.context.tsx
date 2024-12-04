@@ -24,7 +24,7 @@ interface AuthContextProp {
   login: (value: LoginData, url?: string) => Promise<LoggedInUserData>;
   logout: () => void;
   // adminLogin: (value: LoginData) => Promise<void>;
-  currentUser: CurrentUser | null;
+  currentUser: CurrentUser;
 }
 export const AuthContext = createContext<AuthContextProp>({
   login: async (_data: LoginData): Promise<LoggedInUserData> => {
@@ -36,17 +36,19 @@ export const AuthContext = createContext<AuthContextProp>({
 
 const AuthContextProvider = ({ children }: AuthProviderProp) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(
+  const [currentUser, setCurrentUser] = useState<CurrentUser>(
     JSON.parse(
-      global.localStorage ? (global.localStorage.getItem("user") as string) : ""
-    ) || null
+      global.localStorage
+        ? (global.localStorage?.getItem("user") as string)
+        : "{}"
+    ) || ({} as CurrentUser)
   );
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     global.localStorage
       ? global.localStorage.setItem("user", JSON.stringify(currentUser))
-      : null;
+      : {};
   }, [currentUser]);
 
   const login = async (value: LoginData, url = "/api/auth/login") => {
@@ -56,15 +58,16 @@ const AuthContextProvider = ({ children }: AuthProviderProp) => {
       setCurrentUser({ ...data });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return data;
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log(error);
-      throw new Error("Login failed");
+      throw new Error(error.response.data);
     }
   };
 
   const logout = () => {
     localStorage.clear();
-    setCurrentUser(null);
+    setCurrentUser({} as CurrentUser);
   };
   return (
     <AuthContext.Provider value={{ login, logout, currentUser }}>

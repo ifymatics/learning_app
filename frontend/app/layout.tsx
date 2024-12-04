@@ -2,8 +2,10 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import AuthProvider from "./../auth.context";
-import NavBar from "./components/navBar/NavBar";
-
+import dynamic from "next/dynamic";
+const NavBar = dynamic(() => import("./components/navBar/NavBar"), {
+  ssr: false,
+});
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        suppressHydrationWarning={true}
+      >
         <AuthProvider>
           {" "}
           <NavBar />
