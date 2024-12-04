@@ -54,7 +54,7 @@ export class UserSchema {
         } catch (error: any) {
 
             if (error.message === "Not found") {
-
+                console.log(error.message)
                 throw new Error(error.message)
             }
         }

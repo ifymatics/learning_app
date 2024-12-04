@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors, { CorsOptions } from "cors";
 import bodyParser from "body-parser"
 import helmet from "helmet"
+import path from "path";
 import { appRouter } from "./routes";
 import { createTables } from "./database";
 import { isLoggedIn } from "./middlewares/isLoggedIn";
@@ -29,9 +30,14 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
     next();
 });
+app.use(express.static(path.join("public")));
 app.use(cors(corsOptions as CorsOptions));
 
 app.use("/api", isLoggedIn, appRouter);
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
+
 app.listen(5000, async () => {
     await createTables();
     console.log("listening on port 5000")
