@@ -112,8 +112,8 @@ const SubjectForm: FC<SubjectFormProp> = ({
           />
           <select name="subjectId" id="" onChange={onChangeTopicHandler}>
             <option value="null">Select Subject</option>
-            {subjects.length &&
-              subjects.map((subject) => (
+            {subjects.length > 0 &&
+              subjects?.map((subject) => (
                 <option key={subject.id} value={subject.id}>
                   {subject.name}
                 </option>

@@ -46,7 +46,7 @@ const Ranks: FC<RankProp> = ({ ranks, onCancelModal }) => {
             }}
           >
             {ranks.length > 0 ? (
-              ranks.map((rank, index) => (
+              ranks?.map((rank, index) => (
                 <Rank
                   email={rank.email}
                   rate={rank.rate}

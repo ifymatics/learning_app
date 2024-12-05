@@ -53,7 +53,7 @@ const TopicsPage = ({ params }: any) => {
         Topics
       </h2>
       {Array.isArray(topics) &&
-        topics.map((topic, index) => (
+        topics?.map((topic, index) => (
           <div
             className="topicTitle"
             key={topic.id}
