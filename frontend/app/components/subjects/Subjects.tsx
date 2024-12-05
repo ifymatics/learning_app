@@ -26,7 +26,7 @@ const Subjects: FC<SubjectsProp> = ({ subjects = [], pageTitle }) => {
     <div className="subjectContainer">
       <Card className="subjects">
         <h2 className="title">{pageTitle}</h2>
-        {subjects.length > 0 &&
+        {Array.isArray(subjects) &&
           subjects?.map((subject, index) => (
             <Subject
               onClick={onNavigate}

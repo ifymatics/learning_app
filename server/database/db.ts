@@ -1,15 +1,28 @@
 import postgres from "postgres";
 
+// const sql = (() => {
+//     const sql = postgres({
+//         host: "database-1.cveuycwg68mz.eu-west-2.rds.amazonaws.com",//process.env.POSTGRES_HOST,
+//         user: "postgres",//process.env.POSTGRES_USER,
+//         database: "elearning",//process.env.POSTGRES_DB,
+//         password: "ChInomso0620",//process.env.POSTGRES_PASSWORD,
+//         port: 5432,
+//         idle_timeout: 60000,
+//         ssl: true,
+//         transform: postgres.camel
+//     });
+//     return sql
+// })()
 const sql = (() => {
     const sql = postgres({
-        host: "database-1.cveuycwg68mz.eu-west-2.rds.amazonaws.com",//process.env.POSTGRES_HOST,
-        user: "postgres",//process.env.POSTGRES_USER,
-        database: "elearning",//process.env.POSTGRES_DB,
-        password: "ChInomso0620",//process.env.POSTGRES_PASSWORD,
+        host: process.env.POSTGRES_HOST,
+        user: process.env.POSTGRES_USER,
+        database: process.env.POSTGRES_DB,
+        password: process.env.POSTGRES_PASSWORD,
         port: 5432,
         idle_timeout: 60000,
-        ssl: true,
-        transform: postgres.camel
+        transform: postgres.camel,
+        ssl: true
     });
     return sql
 })()

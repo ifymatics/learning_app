@@ -46,7 +46,8 @@ app.use("/api", isLoggedIn_1.isLoggedIn, routes_1.appRouter);
 app.use((req, res, next) => {
     res.sendFile(path_1.default.resolve(__dirname, "public", "index.html"));
 });
-app.listen(5000, () => __awaiter(void 0, void 0, void 0, function* () {
+const PORT = Number(process.env.PORT || 5000);
+app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, database_1.createTables)();
-    console.log("listening on port 5000");
+    console.log(`listening on port ${PORT}`);
 }));

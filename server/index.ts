@@ -37,8 +37,8 @@ app.use("/api", isLoggedIn, appRouter);
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
-
-app.listen(5000, async () => {
+const PORT = Number(process.env.PORT || 5000);
+app.listen(PORT, async () => {
     await createTables();
-    console.log("listening on port 5000")
+    console.log(`listening on port ${PORT}`)
 })

@@ -45,7 +45,7 @@ const Ranks: FC<RankProp> = ({ ranks, onCancelModal }) => {
               justifyContent: "center",
             }}
           >
-            {ranks.length > 0 ? (
+            {Array.isArray(ranks) ? (
               ranks?.map((rank, index) => (
                 <Rank
                   email={rank.email}

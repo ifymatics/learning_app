@@ -191,7 +191,7 @@ const AdminPage = () => {
         </div>
 
         <div className="courses">
-          {subjects.length > 0 &&
+          {Array.isArray(subjects) &&
             subjects?.map((subject, index) => (
               <Subject
                 id={subject.id}
