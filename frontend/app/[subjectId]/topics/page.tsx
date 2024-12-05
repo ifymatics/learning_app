@@ -14,7 +14,9 @@ export type Topic = {
   subjectId: number;
   isCompleted: boolean;
 };
-const TopicsPage = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const TopicsPage = ({ params }: any) => {
+  console.log(params);
   const pathname = usePathname();
   const router = useRouter();
   const id = pathname.split("/")[1];

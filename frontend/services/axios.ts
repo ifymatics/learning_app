@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const requestConfig = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.BASE_URL,
   withCredentials: true,
 
 });
